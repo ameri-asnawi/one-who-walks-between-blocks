@@ -49,7 +49,7 @@ def generate_eth_keypair():
         "address": to_checksum_address(eth_address)
     }
 
-def log_attempt(attempt_num, log_file, dua_index):
+def log_attempt(attempt_num, dua_index, log_file):
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
     dua_message = DUA_MESSAGES[dua_index % len(DUA_MESSAGES)]
     with open(log_file, 'a') as f:
@@ -72,7 +72,7 @@ def update_milestone_count():
     return count
 
 def check_for_dead_address(target="0x000000000000000000000000000000000000dEaD"):
-    attempts = 0
+    total_attempts = 0
     dua_index = 0
     target = target.lower()
     log_file = os.path.join(LOG_DIR, f"search_log_{int(time.time())}.log")
@@ -82,24 +82,18 @@ def check_for_dead_address(target="0x000000000000000000000000000000000000dEaD"):
     print("📿 Each attempt is a reminder: 'The keys of the unseen are with Allah.'\n")
 
     while True:
-        attempts += 1
+        total_attempts += 1
+
+        # Generate a completely random keypair
         keys = generate_eth_keypair()
 
-        # Log only every 50,000,000 attempts — mirroring divine decree (50,000 years before creation)
-        if attempts % 50_000_000 == 0:
-            dua_index += 1
-            log_attempt(attempts, log_file, dua_index)
-            milestone_count = update_milestone_count()
-            dua_message = DUA_MESSAGES[dua_index % len(DUA_MESSAGES)]
-            print(f"\n🔁 Milestone #{milestone_count} reached (50M x {milestone_count})")
-            print(f"📜 Reminder: {dua_message}\n")
-
+        # Check if match found
         if keys["address"].lower() == target:
             print("\n✨ Found matching keypair (by destiny, not chance):")
             print(f"Private Key: {keys['private_key_hex']}")
             print(f"Public Key : {keys['public_key_hex']}")
             print(f"Address    : {keys['address']}")
-            print(f"\n🔁 Attempts: {attempts}")
+            print(f"\n🔁 Total Attempts: {total_attempts}")
             print("\n📜 This was not found by you — it was revealed by Him.")
 
             # Write to file
@@ -126,9 +120,19 @@ def check_for_dead_address(target="0x000000000000000000000000000000000000dEaD"):
             print(f"\n📄 Saved to: {filename}")
             break
 
-        if attempts % 50_000_000 == 0:
+        # Every 50 million attempts — log and remind
+        if total_attempts % 50_000_000 == 0:
+            dua_index += 1
+            log_attempt(total_attempts, dua_index, log_file)
+            milestone_count = update_milestone_count()
             dua_message = DUA_MESSAGES[dua_index % len(DUA_MESSAGES)]
-            print(f"[Attempt #{attempts}] Still searching... Reminder: {dua_message}")
+            print(f"\n🔁 Milestone #{milestone_count} reached (50M x {milestone_count})")
+            print(f"📜 Reminder: {dua_message}\n")
+
+        # Optional: Print progress occasionally
+        if total_attempts % 1_000_000 == 0:
+            dua_message = DUA_MESSAGES[(dua_index + 1) % len(DUA_MESSAGES)]
+            print(f"[Attempt #{total_attempts}] Still searching... Reminder: {dua_message}")
 
 if __name__ == "__main__":
     check_for_dead_address()
