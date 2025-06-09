@@ -7,6 +7,11 @@ import hashlib
 import ecdsa
 from eth_utils import keccak, to_checksum_address
 import time
+import os
+
+# Create logs directory if not exists
+LOG_DIR = "search_logs"
+os.makedirs(LOG_DIR, exist_ok=True)
 
 def generate_eth_keypair():
     # Generate a 256-bit private key randomly
@@ -29,10 +34,16 @@ def generate_eth_keypair():
         "address": to_checksum_address(eth_address)
     }
 
+def log_attempt(attempt_num, log_file):
+    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+    with open(log_file, 'a') as f:
+        f.write(f"[{timestamp}] Attempt #{attempt_num}: Still searching...\n")
+        f.write("   Reminder: 'Indeed, the keys of the unseen are with Allah.'\n\n")
 
 def check_for_dead_address(target="0x000000000000000000000000000000000000dEaD"):
     attempts = 0
     target = target.lower()
+    log_file = os.path.join(LOG_DIR, f"search_log_{int(time.time())}.log")
 
     print("🕌 Starting the search...")
     print("⏳ This is not a brute-force — it is a meditation.")
@@ -41,6 +52,10 @@ def check_for_dead_address(target="0x000000000000000000000000000000000000dEaD"):
     while True:
         attempts += 1
         keys = generate_eth_keypair()
+
+        # Log only every 100,000 attempts — symbolic of completing the tasbih of an entire year
+        if attempts % 1_000_000 == 0:
+            log_attempt(attempts, log_file)
 
         if keys["address"].lower() == target:
             print("\n✨ Found matching keypair (by destiny, not chance):")
