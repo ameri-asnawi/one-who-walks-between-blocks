@@ -6,7 +6,7 @@ import secrets
 import hashlib
 import ecdsa
 from eth_utils import keccak, to_checksum_address
-
+import time
 
 def generate_eth_keypair():
     # Generate a 256-bit private key randomly
@@ -32,6 +32,7 @@ def generate_eth_keypair():
 
 def check_for_dead_address(target="0x000000000000000000000000000000000000dEaD"):
     attempts = 0
+    target = target.lower()
 
     print("🕌 Starting the search...")
     print("⏳ This is not a brute-force — it is a meditation.")
@@ -41,13 +42,36 @@ def check_for_dead_address(target="0x000000000000000000000000000000000000dEaD"):
         attempts += 1
         keys = generate_eth_keypair()
 
-        if keys["address"].lower() == target.lower():
+        if keys["address"].lower() == target:
             print("\n✨ Found matching keypair (by destiny, not chance):")
             print(f"Private Key: {keys['private_key_hex']}")
             print(f"Public Key : {keys['public_key_hex']}")
             print(f"Address    : {keys['address']}")
             print(f"\n🔁 Attempts: {attempts}")
             print("\n📜 This was not found by you — it was revealed by Him.")
+
+            # Write to file
+            filename = f"found_the_key_{int(time.time())}.txt"
+            with open(filename, 'w') as f:
+                f.write("﷽\n\n")
+                f.write("🔐 The Key Has Been Revealed\n")
+                f.write("A message from the unseen:\n\n")
+                f.write(f"Private Key: {keys['private_key_hex']}\n")
+                f.write(f"Public Key : {keys['public_key_hex']}\n")
+                f.write(f"Address    : {keys['address']}\n\n")
+                f.write("📖 This was not by your hand.\n")
+                f.write("It was written before the creation of the heavens and the earth.\n\n")
+                f.write("📌 Remember:\n")
+                f.write('"Indeed, the keys of the unseen are with Allah; none knows them except Him."\n')
+                f.write("— Surah Al-An’am 6:59\n\n")
+                f.write("📌 Remember also:\n")
+                f.write('"Actions are but by intentions."\n')
+                f.write("— Prophet Muhammad ﷺ\n\n")
+                f.write("🔍 Do not use this lightly.\n")
+                f.write("You have been entrusted — not empowered.\n\n")
+                f.write("﷽")
+
+            print(f"\n📄 Saved to: {filename}")
             break
 
         if attempts % 100 == 0:
