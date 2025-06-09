@@ -1,0 +1,45 @@
+# Ignore tools directory
+app/tools/*
+tools/*
+!.gitmodules
+
+# Ignore the nginx_logs directory
+nginx_logs/
+
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore virtual environments
+venv/
+env/
+.venv/
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore Docker-related files
+docker-compose.override.yml
+.env
+
+# Ignore build and distribution files
+build/
+dist/
+*.egg-info/
+
+# Ignore log files
+*.log
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Windows system files
+Thumbs.db
+/app/api/einvoice/sample/*
+
+# Ignore the Am's directory
+/console/
+/app/logs/
+/app/logs/*
