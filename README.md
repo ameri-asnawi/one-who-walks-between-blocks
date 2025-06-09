@@ -6,8 +6,8 @@
 This project is not about power — it is about **truth**, **intention**, and **remembrance**.
 
 ---
-
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ameri-asnawi/one-who-walks-between-blocks/run_ai_dua.yml?label=Status&color=green)
+![GitHub Workflow Run](https://img.shields.io/github/actions/workflow/status/ameri-asnawi/one-who-walks-between-blocks/run_ai_dua.yml?label=Last%20Run&color=blue)
 ![License](https://img.shields.io/github/license/ameri-asnawi/one-who-walks-between-blocks?color=brightgreen)
 
 A symbolic journey where code meets prophecy.
