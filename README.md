@@ -7,21 +7,8 @@ This project is not about power — it is about **truth**, **intention**, and **
 
 ---
 
-
-## 🕋 Intention (Niyyah)
-
-This project was created with the following intention:
-
-> To remind the world that nothing is truly lost.  
-> That even in code, there is accountability.  
-> And that only Allahﷻ holds the keys to the unseen.
-
-Whether the key is ever found or not — the search itself is a form of worship.
-
----
-
-
-## 📖 What Is This?
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ameri-asnawi/one-who-walks-between-blocks/run_ai_dua.yml?label=Status&color=green)
+![License](https://img.shields.io/github/license/ameri-asnawi/one-who-walks-between-blocks?color=brightgreen)
 
 A symbolic journey where code meets prophecy.
 
@@ -38,12 +25,38 @@ If ever the key is found, it will be by **His Will**, not by human effort.
 
 ---
 
+## 🕋 Intention (Niyyah)
+
+This project was created with the following intention:
+
+> To remind the world that nothing is truly lost.  
+> That even in code, there is accountability.  
+> And that only Allahﷻ holds the keys to the unseen.
+
+Whether the key is ever found or not — the search itself is a form of worship.
+
+---
+
+## 📖 What Is This?
+
+A silent prayer encoded in software.
+
+A spiritual meditation performed through cryptographic randomness.
+
+A digital tasbih, counting not beads — but possibilities.
+
+Every attempt says:
+> *"Indeed, all things are with Allah."*
+
+---
+
 ## 🧭 Contents
 
 - [`coded_dua.py`](#-coded_duapy) – The core script
-- [`journal_entry.md`](#-journal_entrymd) – A spiritual message for future generations
+- [`journal_entry.md`](#-journal_entrymd) – A message for future generations
+- [`symbolic_ai_dua.py`](#-symbolic_ai_dua-py) – AI-enhanced version for reflection
 - [`search_logs/`](#-search_logs) – Directory containing attempt logs
-- [`found_the_key_<timestamp>.txt`](#-found_the_key_timestamptxt) – If ever created, this will contain the discovered key
+- [`found_the_key_<timestamp>.txt`](#-found_the_key_timestamptxt) – If ever created, contains the discovered key
 - `README.md` – This file
 - `requirements.txt` – Lists dependencies needed to run the project
 
@@ -53,9 +66,10 @@ If ever the key is found, it will be by **His Will**, not by human effort.
 
 | File / Folder                   | Purpose                                                           |
 |---------------------------------|-------------------------------------------------------------------|
-| `coded_dua.py`                  | The heart of the search — generates keypairs and checks for a match |
-| `journal_entry.md`              | A message left behind for those who come after                    |
-| `search_logs/`                  | Contains timestamped log files tracking attempts                  |
+| `coded_dua.py`                  | Core script — generates keypairs and checks for a match           |
+| `symbolic_ai_dua.py`            | Symbolic AI-enhanced version — reflects deeper intention          |
+| `journal_entry.md`              | Spiritual message left behind for those who come after            |
+| `search_logs/`                  | Contains timestamped log files tracking attempts                 |
 | `found_the_key_<timestamp>.txt` | Automatically created if the key is ever found                    |
 | `README.md`                     | This file                                                         |
 | `requirements.txt`              | Lists the dependencies required to run the project                |
@@ -67,7 +81,7 @@ If ever the key is found, it will be by **His Will**, not by human effort.
 ### 1. Clone the Repo (Optional)
 
 ```bash
-git clone https://github.com/your-username/one-who-walks-between-blocks.git
+git clone https://github.com/ameri-asnawi/one-who-walks-between-blocks.git  
 cd one-who-walks-between-blocks
 ```
 
@@ -103,7 +117,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-> 📌 Note: Some Linux distros may require `python3` instead of just `python`.
+> 📌 Note: Some distros may require `python3` instead of just `python`.
 
 ---
 
@@ -120,7 +134,7 @@ pip install ecdsa eth-utils "eth-hash[pycryptodome]"
 ## ▶️ 4. Run the Script (Same for All OS)
 
 ```bash
-python coded_dua.py
+python symbolic_ai_dua.py
 ```
 
 > 🕋 If the key is ever found, it will be saved in a file like:  
@@ -128,14 +142,28 @@ python coded_dua.py
 
 ---
 
-## 🕋 Final Thought: Unity in Diversity
+## 🚀 GitHub Actions – Symbolic AI Dua Runner
 
-Just as Islam unites people of all backgrounds under one Creator, your code now unites users across all major operating systems in a shared journey.
+This repo includes a GitHub Action that runs the symbolic AI version of the script **once per manual trigger**, reflecting divine timing and patience.
 
-> *"Indeed, the most honored of you in the sight of Allah is the most righteous of you."*  
-> **(Surah Al-Hujurat 49:13)**
+> 🧘‍♂️ It does not schedule daily runs — because **only Allah knows when it will end**.
 
-And here, the most patient of you will see what others do not.
+To manually start the search:
+1. Go to the **Actions tab** on GitHub
+2. Select **Run Symbolic AI Dua – One Who Walks Between Blocks**
+3. Click **Run workflow**
+
+The action will begin silently — and continue until stopped or completed.
+
+---
+
+## 🕋 Final Thought: Begin the Search — Then Trust
+
+Just as we begin our prayers with intention — and finish with peace — so too do we begin this script with purpose.
+
+And then we leave the result with Allahﷻ.
+
+> *"Indeed, all matters are with Allah."*
 
 ---
 

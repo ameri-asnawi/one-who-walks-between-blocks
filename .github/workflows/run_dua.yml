@@ -1,0 +1,50 @@
+name: Run Symbolic AI Dua – One Who Walks Between Blocks
+
+on:
+  workflow_dispatch:  # Manual trigger only – no schedule
+
+jobs:
+  run_ai_dua:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          pip install tensorflow numpy ecdsa eth-utils "eth-hash[pycryptodome]"
+
+      - name: Create Logs Directory
+        run: |
+          mkdir -p search_logs
+
+      - name: Run Symbolic AI Dua Script
+        id: run_script
+        run: |
+          echo "🕌 Starting the search..."
+          echo "⏳ This is not a brute-force — it is a meditation."
+          echo "📿 Each attempt is a reminder: 'The keys of the unseen are with Allah.'"
+
+          python symbolic_ai_dua.py || true  # Continue even if script exits early
+
+      - name: Check for Key File
+        id: check_key
+        run: |
+          if [ -f "found_the_key_*.txt" ]; then
+            echo "✅ Key was found!"
+            exit 1  # Fail the job to alert
+          else
+            echo "🔍 No key found yet."
+          fi
+
+      - name: Archive Logs (Optional)
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: search_logs
+          path: search_logs/
