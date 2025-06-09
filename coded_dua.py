@@ -53,7 +53,7 @@ def check_for_dead_address(target="0x000000000000000000000000000000000000dEaD"):
         attempts += 1
         keys = generate_eth_keypair()
 
-        # Log only every 100,000 attempts — symbolic of completing the tasbih of an entire year
+        # Log only every 1,000,000 attempts — Symbolic of a year's worth of tasbih — a sacred checkpoint
         if attempts % 1_000_000 == 0:
             log_attempt(attempts, log_file)
 
