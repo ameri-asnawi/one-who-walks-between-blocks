@@ -1,20 +1,37 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyc~
+*.pyd
+*$py.class
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Dependency directories
+__pypackages__/
+
+# Logs
+*.log
+search_logs/
+nginx_logs/
+/app/logs/
+/app/logs/*
+
+# Key files (if ever found)
+found_the_key_*.txt
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
 # Ignore tools directory
 app/tools/*
 tools/*
 !.gitmodules
-
-# Ignore the nginx_logs directory
-nginx_logs/
-
-# Ignore Python cache files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Ignore virtual environments
-venv/
-env/
-.venv/
 
 # Ignore IDE-specific files
 .vscode/
@@ -29,17 +46,5 @@ build/
 dist/
 *.egg-info/
 
-# Ignore log files
-*.log
-
-# Ignore macOS system files
-.DS_Store
-
-# Ignore Windows system files
-Thumbs.db
-/app/api/einvoice/sample/*
-
 # Ignore the Am's directory
 /console/
-/app/logs/
-/app/logs/*
