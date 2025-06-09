@@ -13,6 +13,21 @@ import os
 LOG_DIR = "search_logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 
+# File to track how many 50M milestones have been reached
+MILESTONE_FILE = "milestone_count.txt"
+
+# List of meaningful verses/duas to rotate every 50M attempts
+DUA_MESSAGES = [
+    '"Indeed, the keys of the unseen are with Allah; none knows them except Him." — Surah Al-An’am 6:59',
+    '"And you do not will except that Allah wills." — Surah Al-Insan 76:30',
+    '"Actions are but by intentions." — Prophet Muhammad ﷺ',
+    '"Indeed, with hardship comes ease." — Surah Ash-Sharh 94:5–6',
+    '"Indeed, Allah loves patience." — Surah Al-Baqarah 2:243',
+    '"Whoever fears Allah — He will teach them." — Surah At-Talaq 65:4',
+    '"Indeed, Allah is with the patient." — Surah Al-Baqarah 2:153',
+    '"Say: Nothing will happen to us except what Allah has decreed for us." — Surah At-Tawbah 9:51'
+]
+
 def generate_eth_keypair():
     # Generate a 256-bit private key randomly
     private_key = secrets.token_bytes(32)
@@ -34,14 +49,31 @@ def generate_eth_keypair():
         "address": to_checksum_address(eth_address)
     }
 
-def log_attempt(attempt_num, log_file):
+def log_attempt(attempt_num, log_file, dua_index):
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+    dua_message = DUA_MESSAGES[dua_index % len(DUA_MESSAGES)]
     with open(log_file, 'a') as f:
         f.write(f"[{timestamp}] Attempt #{attempt_num}: Still searching...\n")
-        f.write("   Reminder: 'Indeed, the keys of the unseen are with Allah.'\n\n")
+        f.write(f"   Reminder: {dua_message}\n\n")
+
+def update_milestone_count():
+    """Increments and saves the milestone counter"""
+    if os.path.exists(MILESTONE_FILE):
+        with open(MILESTONE_FILE, "r") as f:
+            count = int(f.read().strip() or "0")
+    else:
+        count = 0
+
+    count += 1
+
+    with open(MILESTONE_FILE, "w") as f:
+        f.write(str(count))
+
+    return count
 
 def check_for_dead_address(target="0x000000000000000000000000000000000000dEaD"):
     attempts = 0
+    dua_index = 0
     target = target.lower()
     log_file = os.path.join(LOG_DIR, f"search_log_{int(time.time())}.log")
 
@@ -53,9 +85,14 @@ def check_for_dead_address(target="0x000000000000000000000000000000000000dEaD"):
         attempts += 1
         keys = generate_eth_keypair()
 
-        # Log only every 1,000,000 attempts — Symbolic of a year's worth of tasbih — a sacred checkpoint
-        if attempts % 1_000_000 == 0:
-            log_attempt(attempts, log_file)
+        # Log only every 50,000,000 attempts — mirroring divine decree (50,000 years before creation)
+        if attempts % 50_000_000 == 0:
+            dua_index += 1
+            log_attempt(attempts, log_file, dua_index)
+            milestone_count = update_milestone_count()
+            dua_message = DUA_MESSAGES[dua_index % len(DUA_MESSAGES)]
+            print(f"\n🔁 Milestone #{milestone_count} reached (50M x {milestone_count})")
+            print(f"📜 Reminder: {dua_message}\n")
 
         if keys["address"].lower() == target:
             print("\n✨ Found matching keypair (by destiny, not chance):")
@@ -89,9 +126,9 @@ def check_for_dead_address(target="0x000000000000000000000000000000000000dEaD"):
             print(f"\n📄 Saved to: {filename}")
             break
 
-        if attempts % 100 == 0:
-            print(f"[Attempt #{attempts}] Still searching... Remember: 'All things are with Allah.'")
-
+        if attempts % 50_000_000 == 0:
+            dua_message = DUA_MESSAGES[dua_index % len(DUA_MESSAGES)]
+            print(f"[Attempt #{attempts}] Still searching... Reminder: {dua_message}")
 
 if __name__ == "__main__":
     check_for_dead_address()
